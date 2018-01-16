@@ -1,0 +1,23 @@
+#!/bin/bash -xe
+# create users
+server="localhost:8080"
+curl $server/createUser/avd
+curl $server/createUser/dvd
+curl $server/createUser/shit_head
+
+# add connections
+curl localhost:8080/addConnection/avd/dvd
+curl localhost:8080/addConnection/dvd/shit_head
+curl localhost:8080/addConnection/avd/shit_head
+
+# send messages
+curl $server/sendMessage/avd/dvd/hello
+curl $server/sendMessage/avd/shit_head/hello
+curl $server/sendMessage/shit_head/dvd/hello
+curl $server/sendMessage/shit_head/avd/hello
+
+# read messages
+curl localhost:8080/readMessages/avd
+curl localhost:8080/readMessages/dvd
+curl localhost:8080/readMessages/shit_head
+
